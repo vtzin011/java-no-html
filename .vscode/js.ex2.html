@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Literal</title>
+</head>
+<body>
+    <h1>Acabamos !</h1>
+    <script>
+
+    let nome = "Adriely";
+    let idade = 16;
+    window.alert(`Olá, meu nome é ${nome} e tenho ${idade} anos.`)
+
+    let a = 5;
+    let b = 3;
+    let soma = a + b;
+    window.alert(`A soma de 5 e 3 é ${soma}.`)
+
+    let numero = 7;
+    let npi =  numero % 2 == 0 ? "Par" : "Ímpar"
+    window.alert(`Este número é ${npi}`)
+
+    let nota = 6.5;
+    let aluno = nota >= 6 ? "Aprovado" : "Reprovado"
+    window.alert(`O aluno foi ${aluno}`)
+
+    let idade2 = 17;
+    let maior = idade2 >= 18 ? "Maior de Idade" : "Menor de Idade"
+    window.alert(`A pessoa é ${maior}`)
+
+    const subtrai = function (a, b) {
+    return a - b;
+    };
+    window.alert(subtrai(10,4))
+    window.alert("A) O código acima mostra o número 'a' menos o número 'b'" )
+    window.alert(`B) Ele mostra ${subtrai(10, 4) } pois subtrai 4 do número 10`)
+
+    let nom2 = "Maria";
+    let nota1 = 7;
+    let nota2 = 5;
+    let media = (nota1 + nota2) / 2
+    let aprov = media >= 6 ? "Aprovado" : "Reprovado"
+    window.alert(`A aluna ${nom2} teve média ${media}, então está ${aprov}`)
+
+
+    </script>
+</body>
+</html>
