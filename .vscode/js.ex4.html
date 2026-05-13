@@ -25,14 +25,16 @@ function quadrado (a){
 alert(quadrado(6))
 
 function idade (idade){
- if (idade > 18){
-    return "voce e maior de idade";
-}else{
-    return "voce e menor de idade"
+let idade2= idade >= 18 ? "maior de idade": "menor de idade"
+alert(` Você é ${idade2}`)
 }
-alert(idade(12))
-}
+alert(idade(15))
 
+function num1(nu){
+    let num2= nu%2==0? "seu numero e par": "seu numero e impar"
+    alert(num2)
+}
+alert(num1(16))
     </script>
 </body>
 </html>
