@@ -3,22 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Funçoes JaVascript 2</title>
 </head>
 <body>
-    <script>
-        function situacaoAluno(nome, nota) {
-            if (nota >= 7) {
-                return `O aluno ${nome} está Aprovado.`;
-            } else if (nota >= 5 && nota < 7) {
-                return `O aluno ${nome} está em Recuperação.`;
-            } else {
-                return `O aluno ${nome} está Reprovado.`;
+   <script>
+    
+function situacaoAluno(nome,nota) {
+            if (nota >= 7){
+                return `${nome} foi Aprovado`
+            }else if (nota >= 5 && nota < 6.9 ){
+                return `${nome} esta de recuperação`
+            }else if (nota < 5){
+                return `${nome} esta reprovado`
+            }else {
+                return `Nota não calculada`
             }
-        }
-        alert("meu nome é (victor) e minha nota é (8))
+            }
+            let cachorro = prompt("Digite seu nome \n")
+            let caramelo = Number(prompt("Digite a sua nota, \n (de 0 a 10)\n"))
+            alert(situacaoAluno(cachorro,caramelo))
+
+            function verificarIdade(nome,idade){
+                if (idade <= 12){
+                    return `${nome} é criança`
+                }else if (idade >= 13 && idade <= 17){
+                    return `${nome} é adolescente` 
+                }else if (idade >= 18 && idade <= 59){
+                    return `${nome} é adulto(a)`
+                }else if (idade >= 60){
+                    return `${nome} é velho(a)`
+                }               
+            }
+            let puto = Number(prompt("Digite sua idade \n"))
+            alert(verificarIdade(cachorro,puto))
+            
+            function calculadora(n1,n2,op){
+                if (op == "+"){
+                    return n1 + n2
+                }else if (op == "-"){
+                    return n1 - n2
+                }else if (op == "*"){
+                    return n1 * n2
+                }else if (op == "/"){
+                    return n1 / n2
+                }else{
+                    return `Operação não encontrada`
+                }
+            }
+            let porta = Number(prompt("Digite o primeiro número \n"))
+            let avião = Number(prompt("Digite o outro número \n"))
+            let network = prompt("Digite a operação (+ - * /) \n")
+            alert(calculadora(porta,avião,network))
+
+            function desconto(nome,valor){
+                if (valor >= 500){
+                    return `você teve 20$ de desconto, ${valor - (0.2 * valor)}`
+                }else if (valor >= 200 ){
+                    return `você teve 10$ de desconto, ${valor - (0.1 * valor)}`
+                }else {
+                    return `você não teve desconto`
+                }
+            }
+            let abdusido= Number(prompt("Digite o valor de sua compra \n"))
+            alert(`O valor de sua compra era de ${abdusido}R$, então ${desconto(cachorro,abdusido)}`)
+
+            function parOuImpar(num){
+                if (num % 2 == 0){
+                    return `O ${num} é par`
+                }else{
+                    return `O ${num} é ímpar` 
+                }
+            }
+            let ET= Number(prompt("Digite um número,\n veremos se ele é par ou ímpar \n"))
+            alert(parOuImpar(ET))
+
+            function login(usuario,senha){
+                if (usuario == "admin" && senha == "1234"){
+                    return `Acesso permitido`
+                }else if (usuario == "admin" && senha != "1234"){
+                    return `senha incorreta`
+                }else{
+                    return `Acesso negado`
+                }
+            }
+            let toca= prompt("Digite o seu usuário \n")
+            let cagado = prompt("Digite sua senha \n")
+            alert(login(toca,cagado))
+
+            function temperatura(cidade,temp){
+                if (temp <= 15){
+                    return `${cidade} muito frio tche`
+                }else if (temp > 15 && temp <= 25){
+                    return `${cidade} morno piá`
+                }else {
+                    return `${cidade} esta pelando tche`
+                }
+            }
+            let chupeta = prompt("Digite sua cidade \n")
+            let nenem = Number(prompt("Digite a temperatura \n"))
+            alert(temperatura(chupeta,nenem))
 
 
-    </script>
+   </script> 
 </body>
 </html>
