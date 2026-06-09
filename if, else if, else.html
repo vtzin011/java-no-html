@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>euuu</title>
+</head>
+<body>
+    <script>
+
+function  rankingJogador(nome,pontos){
+        if (pontos >= 1000){
+            return `${nome}, com ${pontos} pontos : Jogador(a) Lendário`
+        }else if (pontos >500 && pontos <= 999){
+            return `${nome}, com ${pontos} pontos : Jogador(a) Veterano`
+        }else if (pontos > 100 && pontos <= 499){
+            return `${nome}, com ${pontos} pontos : Jogador(a) Iniciante`
+        }else{
+            return `${nome}, com ${pontos} pontos : Jogador(a) Novato`
+        }
+    }
+    let nome1 = prompt("Digite seu nome ")
+    let ponto1 = Number(prompt("Digite seus pontos "))
+    alert(rankingJogador(nome1,ponto1))
+
+    function verificarVelocidade(nome,vel){
+        if (vel <= 59){
+            return `${nome} esta à ${vel}Km por hora, velocidade permitida`
+        }else if(vel >= 60 && vel <= 79){
+            return `${nome} esta à ${vel}Km por hora, atenção`
+        }else{
+            return `${nome} esta à ${vel}Km por hora, foi multado(a)`
+        }
+    }
+    let motorista = prompt("Digite o nome do(a) motorista ")
+    let vel1 = Number(prompt("Digite a velocidade "))
+    alert(verificarVelocidade(motorista,vel1))
+
+    function verificarEstoque(produto,qtd){
+        if (qtd == 0){
+            return `${produto} acabou`
+        }else if (qtd >= 1 && qtd <= 9){
+            return `${produto} em estoque baixo`
+        }else {
+            return `${produto} disponível`
+        }
+    }
+    let produto1 = Number(prompt("Digite o nome do produto"))
+    let qtd1 = Number(prompt("Digite a quantidade em estoque "))
+    alert(verificarEstoque(produto1,qtd1))
+
+
+    function avaliarFilme(nome,nota){
+        if (nota >=9){
+            return`${nome} é Excelente, com nota ${nota}`
+        }else if (nota >=7){
+            return`${nome} é Bom, com nota ${nota}`
+        }else if (nota >= 5){
+            return`${nome} é Regular, com nota ${nota}`
+        }else{
+            return`${nome} é Ruim, com nota ${nota}`
+        }
+    }
+    let nome2 = prompt("Digite o nome do filme")
+    let nota2 = Number(prompt("Digite a nota do filme "))
+    alert(avaliarFilme(nome2,nota2))
+
+    function calcularConta(cliente,consumo){
+        if (consumo <= 100){
+            return `${cliente} consome ${consumo}, Baixo consumo`
+        }else if(consumo >= 101 && consumo <= 299){
+            return `${cliente} consome ${consumo}, Consumo Médio`
+        }else{
+            return `${cliente} consome ${consumo}, Consumo alto`
+        }
+    }
+    let cliente1 = prompt("Seu nome")
+    let consumo1 = Number(prompt("Digite seu consumo "))
+    alert(calcularConta(cliente1,consumo1))
+
+    function saque(nome, valor) {
+    if (valor <= 0) {
+        console.log(`Olá, ${nome}! Valor inválido. O valor do saque deve ser maior que zero.`);
+    } else if (valor <= 500) {
+        console.log(`Olá, ${nome}! Saque autorizado`);
+    } else if (valor <= 1000) {
+        console.log(`Olá, ${nome}! O valor excede R$500. Necessária confirmação do gerente.`);
+    } else {
+        console.log(`Olá, ${nome}! Saque não permitido. O valor excede o limite máximo de R$1000.`);
+    }
+    }
+    let nome3 = prompt("Digite seu nome ")
+    let valor8 = Number(prompt("Digite o valor"))
+    alert(saque(nome3, vaor8))
+
+
+ 
+
+
+
+    </script>
+</body>
+</html>
