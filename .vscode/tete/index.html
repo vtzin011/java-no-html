@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Interativo - Sistemas</title>
+    <style>
+        /* Estilos Globais */
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { bg-color: #f3f4f6; background-color: #f3f4f6; color: #1f2937; padding: 2rem 1rem; }
+        header { text-align: center; max-width: 1100px; margin: 0 auto 2.5rem auto; }
+        header h1 { font-size: 2rem; color: #111827; margin-bottom: 0.5rem; }
+        header p { color: #6b7280; font-size: 1rem; }
+
+        /* Grid de Cards */
+        main { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        
+        /* Estilo do Card */
+        .card { background: #ffffff; padding: 1.5rem; border-radius: 12px; border: 1px solid #e5e7eb; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; justify-content: space-between; }
+        .titulo { font-size: 1.15rem; font-weight: 700; color: #374151; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        
+        /* Formulários */
+        .input-group { display: flex; flex-direction: column; gap: 0.25rem; margin-bottom: 0.75rem; }
+        .label { font-size: 0.85rem; font-weight: 600; color: #4b5563; }
+        .input { width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #d1d5db; border-radius: 8px; font-size: 0.95rem; transition: all 0.2s; }
+        .input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+        
+        /* Botões */
+        .btn { width: 100%; background-color: #2563eb; color: #ffffff; border: none; padding: 0.6rem; border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+        .btn:hover { background-color: #1d4ed8; }
+        
+        /* Resultados e Cores Dinâmicas */
+        .resultado { margin-top: 1rem; padding: 0.75rem;
+        .status-padrao { display: block; background-color: #f9fafb; color: #374151; border-color: #e5e7eb; }
+        .status-sucesso { display: block; background-color: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+        .status-alerta { display: block; background-color: #fefce8; color: #854d0e; border-color: #fef08a; }
+        .status-erro { display: block; background-color: #fef2f2; color: #991b1b; border-color: #fecaca; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🎛️ Central de Sistemas Interativos</h1>
+        <p>Insira os dados nos painéis abaixo para rodar os scripts localmente.</p>
+    </header>
+
+    <main>
+        <!-- 1. Ranking de Jogador -->
+        <section class="card">
+            <div>
+                <h2 class="titulo">🎮 Ranking do Jogador</h2>
+                <div class="input-group">
+                    <label class="label">Nome do Jogador</label>
+                    <input type="text" id="rank-nome" class="input" placeholder="Ex: Arthur">
+                </div>
+                <div class="input-group">
+                    <label class="label">Pontuação</label>
+                    <input type="number" id="rank-pontos" class="input" placeholder="Ex: 1200">
+                </div>
+            </div>
+            <div>
+                <button onclick="executarRanking()" class="btn">Validar Rank</button>
+                <div id="res-ranking" class="resultado"></div>
+            </div>
+        </section>
+
+        <!-- 2. Verificador de Velocidade -->
+        <section class="card">
+            <div>
+                <h2 class="titulo">🚗 Radar de Velocidade</h2>
+                <div class="input-group">
+                    <label class="label">Motorista</label>
+                    <input type="text" id="vel-nome" class="input" placeholder="Ex: Hudson">
+                </div>
+                <div class="input-group">
+                    <label class="label">Velocidade (km/h)</label>
+                    <input type="number" id="vel-velocidade" class="input" placeholder="Ex: 85">
+                </div>
+            </div>
+            <div>
+                <button onclick="executarVelocidade()" class="btn">Checar Velocidade</button>
+                <div id="res-velocidade" class="resultado"></div>
+            </div>
+        </section>
+
+        <!-- 3. Controle de Estoque -->
+        <section class="card">
+            <div>
+                <h2 class="titulo">📦 Controle de Estoque</h2>
+                <div class="input-group">
+                    <label class="label">Nome do Produto</label>
+                    <input type="text" id="est-produto" class="input" placeholder="Ex: Teclado">
+                </div>
+                <div class="input-group">
+                    <label class="label">Quantidade</label>
+                    <input type="number" id="est-qtd" class="input" placeholder="Ex: 5">
+                </div>
+            </div>
+            <div>
+                <button onclick="executarEstoque()" class="btn">Verificar Estoque</button>
+                <div id="res-estoque" class="resultado"></div>
+            </div>
+        </section>
+
+        <!-- 4. Avaliação de Filmes -->
+        <section class="card">
+            <div>
+                <h2 class="titulo">🎬 Avaliação de Filmes</h2>
+                <div class="input-group">
+                    <label class="label">Nome do Filme</label>
+                    <input type="text" id="film-nome" class="input" placeholder="Ex: Interstellar">
+                </div>
+                <div class="input-group">
+                    <label class="label">Nota (0 a 10)</label>
+                    <input type="number" id="film-nota" min="0" max="10" step="0.1" class="input" placeholder="Ex: 9.5">
+                </div>
+            </div>
+            <div>
+                <button onclick="executarFilme()" class="btn">Avaliar Filme</button>
+                <div id="res-filme" class="resultado"></div>
+            </div>
+        </section>
+
+        <!-- 5. Conta de Consumo -->
+        <section class="card">
+            <div>
+                <h2 class="titulo">⚡ Consumo de Energia</h2>
+                <div class="input-group">
+                    <label class="label">Nome do Cliente</label>
+                    <input type="text" id="cons-cliente" class="input" placeholder="Ex: Roberta">
+                </div>
+                <div class="input-group">
+                    <label class="label">Consumo (kWh)</label>
+                    <input type="number" id="cons-valor" class="input" placeholder="Ex: 150">
+                </div>
+            </div>
+            <div>
+                <button onclick="executarConsumo()" class="btn">Calcular Conta</button>
+                <div id="res-consumo" class="resultado"></div>
+            </div>
+        </section>
+
+        <!-- 6. Simulador de Saque Bancário -->
+        <section class="card">
+            <div>
+                <h2 class="titulo">💰 Caixa Eletrônico (Saque)</h2>
+                <div class="input-group">
+                    <label class="label">Nome do Titular</label>
+                    <input type="text" id="saque-nome" class="input" placeholder="Ex: Tasmania">
+                </div>
+                <div class="input-group">
+                    <label class="label">Valor do Saque (R$)</label>
+                    <input type="number" id="saque-valor" class="input" placeholder="Ex: 600">
+                </div>
+            </div>
+            <div>
+                <button onclick="executarSaque()" class="btn">Solicitar Saque</button>
+                <div id="res-saque" class="resultado"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- 1. FUNÇÃO RANKING JOGADOR ---
+        function rankingJogador(nome, pontos){
+            if (pontos >= 1000) return `🏆 ${nome}, com ${pontos} pontos: Jogador(a) Lendário`;
+            if (pontos > 500) return `🛡️ ${nome}, com ${pontos} pontos: Jogador(a) Veterano`;
+            if (pontos > 100) return `⚔️ ${nome}, com ${pontos} pontos: Jogador(a) Iniciante`;
+            return `🐣 ${nome}, com ${pontos} pontos: Jogador(a) Novato`;
+        }
+        function executarRanking() {
+            const nome = document.getElementById('rank-nome').value || "Jogador";
+            const pontos = Number(document.getElementById('rank-pontos').value);
+            const res = document.getElementById('res-ranking');
+            res.innerHTML = rankingJogador(nome, pontos);
+            res.className = "resultado status-padrao";
+        }
+
+        // --- 2. FUNÇÃO VERIFICAR VELOCIDADE ---
+        function executarVelocidade() {
+            const nome = document.getElementById('vel-nome').value || "Motorista";
+            const vel = Number(document.getElementById('vel-velocidade').value);
+            const res = document.getElementById('res-velocidade');
+            
+            if (vel <= 59){
+                res.className = "resultado status-sucesso";
+                res.innerHTML = `✅ ${nome} está a ${vel} Km/h. Velocidade permitida.`;
+            } else if(vel >= 60 && vel <= 79){
+                res.className = "resultado status-alerta";
+                res.innerHTML = `⚠️ ${nome} está a ${vel} Km/h. Atenção!`;
+            } else {
+                res.className = "resultado status-erro";
+                res.innerHTML = `🚨 ${nome} está a ${vel} Km/h. Foi multado(a)!`;
+            }
+        }
+
+        // --- 3. FUNÇÃO VERIFICAR ESTOQUE ---
+        function executarEstoque() {
+            const produto = document.getElementById('est-produto').value || "Produto";
+            const qtd = Number(document.getElementById('est-qtd').value);
+            const res = document.getElementById('res-estoque');
+
+            if (qtd <= 0){
+                res.className = "resultado status-erro";
+                res.innerHTML = `❌ O estoque de ${produto} acabou.`;
+            } else if (qtd >= 1 && qtd <= 9){
+                res.className = "resultado status-alerta";
+                res.innerHTML = `⚠️ ${produto} está com estoque baixo (${qtd} un).`;
+            } else {
+                res.className = "resultado status-sucesso";
+                res.innerHTML = `✅ ${produto} está disponível (${qtd} un).`;
+            }
+        }
+
+        // --- 4. FUNÇÃO AVALIAR FILME ---
+        function executarFilme() {
+            const nome = document.getElementById('film-nome').value || "Filme";
+            const nota = Number(document.getElementById('film-nota').value);
+            const res = document.getElementById('res-filme');
+            res.className = "resultado status-padrao";
+            
+            if (nota >= 9) res.innerHTML = `🔥 ${nome} é Excelente! Nota: ${nota}`;
+            else if (nota >= 7) res.innerHTML = `👍 ${nome} é Bom. Nota: ${nota}`;
+            else if (nota >= 5) res.innerHTML = `😐 ${nome} é Regular. Nota: ${nota}`;
+            else res.innerHTML = `👎 ${nome} é Ruim. Nota: ${nota}`;
+        }
+
+        // --- 5. FUNÇÃO CALCULAR CONTA ---
+        function executarConsumo() {
+            const cliente = document.getElementById('cons-cliente').value || "Cliente";
+            const consumo = Number(document.getElementById('cons-valor').value);
+            const res = document.getElementById('res-consumo');
+            res.className = "resultado status-padrao";
+
+            if (consumo <= 100) res.innerHTML = `📉 ${cliente} consome ${consumo} kWh. Baixo consumo.`;
+            else if (consumo >= 101 && consumo <= 299) res.innerHTML = `📊 ${cliente} consome ${consumo} kWh. Consumo Médio.`;
+            else res.innerHTML = `📈 ${cliente} consome ${consumo} kWh. Consumo Alto!`;
+        }
+
+        // --- 6. FUNÇÃO SAQUE ---
+        function executarSaque() {
+            const nome = document.getElementById('saque-nome').value || "Cliente";
+            const valor = Number(document.getElementById('saque-valor').value);
+            const res = document.getElementById('res-saque');
+
+            if (valor <= 0) {
+                res.className = "resultado status-erro";
+                res.innerHTML = `❌ Olá, ${nome}! Valor inválido.`;
+            } else if (valor <= 500) {
+                res.className = "resultado status-sucesso";
+                res.innerHTML = `✅ Olá, ${nome}! Saque autorizado de R$ ${valor}.`;
+            } else if (valor <= 1000) {
+                res.className = "resultado status-alerta";
+                res.innerHTML = `⚠️ Olá, ${nome}! Necessária confirmação do gerente.`;
+            } else {
+                res.className = "resultado status-erro";
+                res.innerHTML = `🚫 Olá, ${nome}! O valor excede o limite máximo de R$1000.`;
+            }
+        }
+    </script>
+</body>
+</html>
